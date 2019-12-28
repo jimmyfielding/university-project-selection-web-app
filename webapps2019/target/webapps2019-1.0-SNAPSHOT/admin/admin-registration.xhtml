@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputLabel for="sussex-id" value="*Sussex-id: "/>
+            <h:inputText id ="sussex-id" value="#{supervisorRegistrationBean.sussexId}" title="Enter Sussex ID" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="sussex-id"/>
+            <br/>
+            <h:outputLabel for="userPassword" value="*Password: "/>
+            <h:inputSecret id ="userPassword" value="#{supervisorRegistrationBean.password}" title="Enter password" label="password" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="userPassword"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Register" action="#{adminRegistrationBean.registerAdmin()}" title="Register Supervisor"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+        <h:button id="back_button" title="Go Back" value="Back" outcome="user-registration"/>
+    </h:body>
+</html>
+

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>My Page</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Full Name: <h:outputText id="name" title="Full Name" value="#{supervisorBean.name}"/>
+            <br/>
+
+            <h:outputText value="You do not have any supervisees!" rendered="#{empty supervisorBean.getAllSupervisees()}" />
+            <h:dataTable binding="#{supervisorBean.dataTable}" value="#{supervisorBean.getAllSupervisees()}" rendered="#{not empty supervisorBean.getAllSupervisees()}" var="supervisee">
+                <h:column>    				
+                    <f:facet name="header">Name</f:facet>    				
+                        #{supervisee.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Surname</f:facet>
+                        #{supervisee.surname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">View</f:facet>
+                    <h:commandButton id="view_project_button" type="submit" value="View" action="#{supervisorBean.viewProject()}" title="View Project"/>
+                </h:column>
+
+            </h:dataTable>
+            <br/>
+        </h:form>
+        <h:button id="register_project_topic_button" title="Register Project Topic" value="Register Project Topic" outcome="project-topic-registration"/>
+        <h:button id="register_project_button" title="Register Project" value="Register Project" outcome="project-registration"/>
+        <h:button id="back_button" title="Go Back" value="Back" outcome="index"/>
+        <h:form>
+            <h:outputText value="You do not have any notifications!" rendered="#{empty supervisorBean.getAllNotifications()}" />
+            <h:dataTable binding="#{supervisorBean.dataTableNot}" value="#{supervisorBean.getAllNotifications()}" rendered="#{not empty supervisorBean.getAllNotifications()}" var="notification">
+                <h:column>
+                    <f:facet name="header">Notification</f:facet>
+                        #{notification.printStatus()}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">View</f:facet>
+                    <h:commandButton id="view_notification_button" type="submit" value="View" action="#{supervisorBean.viewNotificationProject(supervisorBean.projectToView.title)}" title="View Project"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h:form>
+            Logout: <h:commandButton value="Logout" action="#{loginBean.logout()}"/>
+        </h:form>
+
+    </h:body>
+</html>

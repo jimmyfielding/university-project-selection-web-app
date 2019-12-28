@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Supervisor Registration</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Fill in the details and press the register button.
+            sussex-id (e.g. gp225 - must be unique), name, surname, department, email address (must be validated), telephone number.
+            <br/>
+            <h:outputLabel for="sussex-id" value="*Sussex-id: "/>
+            <h:inputText id ="sussex-id" value="#{supervisorRegistrationBean.sussexId}" title="Enter Sussex ID" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="sussex-id"/>
+            <br/>
+            <h:outputLabel for="userPassword" value="*Password: "/>
+            <h:inputSecret id ="userPassword" value="#{supervisorRegistrationBean.password}" title="Enter password" label="password" required="true" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="userPassword"/>
+            <br/>
+            <h:outputLabel for="name" value="*First Name: "/>
+            <h:inputText id ="name" value="#{supervisorRegistrationBean.name}" title="Enter name" required="true" label="name" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="name"/>
+            <br/>
+            <h:outputLabel for="surname" value="*Surname: "/>
+            <h:inputText id ="surname" value="#{supervisorRegistrationBean.surname}" title="Enter surname" required="true" label="surname" requiredMessage="Mandatory Field"/>
+            &nbsp; 
+            <h:message style="color:red" for="name"/>
+            <br/>
+            <h:outputLabel for="department" value="*Department"/>
+            <h:inputText id="department" value="#{supervisorRegistrationBean.department}" title="Enter department" required="true" label="department" requiredMessage="Mandatory Field"/>
+            &nbsp;
+            <h:message style="color:red" for="department"/>
+            <br/>
+            <h:outputLabel for="email" value="*Email: "/>
+            <h:inputText id ="email" value="#{supervisorRegistrationBean.email}" title="Enter email" label="email" required="true"  requiredMessage="Mandatory Field" size="40" validatorMessage="Invalid email format">
+                <f:validateRegex
+                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+            </h:inputText>
+            &nbsp; 
+            <h:message style="color:red" for="email"/>
+            <br/>
+            <h:outputLabel for="telephoneNumber" value="*Telephone Number: "/>
+            <h:inputText id ="telephoneNumber" value="#{supervisorRegistrationBean.telephoneNumber}" title="Enter telephone number" required="true" label="telephone number" requiredMessage="Mandatory Field">
+                <f:validateRegex
+                    pattern="^[0][1-9]\d{9}$|^[1-9]\d{9}$" />
+            </h:inputText>
+            &nbsp; 
+            <h:message style="color:red" for="telephoneNumber"/>
+            <br/>
+            <h:commandButton id="register" type="submit" value="Register" action="#{supervisorRegistrationBean.registerSupervisor()}" title="Register Supervisor"/>
+            <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+        </h:form>
+        <h:button id="back_button" title="Go Back" value="Back" outcome="user-registration"/>
+    </h:body>
+</html>
+
